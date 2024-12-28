@@ -1,0 +1,33 @@
+---
+import PostTemplate from "@/layouts/PostTemplate.astro"
+import { getPosts } from "@/libraries/microcms"
+import { formatDate } from "@/libraries/formatDate"
+
+export async function getStaticPaths() {
+    const posts = await getPosts()
+
+    return posts.map((post) => {
+        return {
+            params: { category: post.category.id, post: post.id },
+            props: { post },
+        }
+    })
+}
+
+const { post } = Astro.props
+---
+
+<PostTemplate post={post}>
+    <div class="c-post__contents">
+        <h1 class="c-post__title">{post.title}</h1>
+        <div class="c-post__date">{formatDate(post.createdAt)}</div>
+        <div class="c-post__content">
+            <div class="c-post__contentWrapper">
+                <div class="c-post__contentInner">
+                    <div class="c-post__emoji">{post.Emoji}</div>
+                    <div class="c-post__body" set:html={post.content} />
+                </div>
+            </div>
+        </div>
+    </div>
+</PostTemplate>

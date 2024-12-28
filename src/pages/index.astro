@@ -1,0 +1,28 @@
+---
+import CommonTemplate from "@/layouts/CommonTemplate.astro"
+import { formatDate } from "@/libraries/formatDate"
+import { getPosts } from "@/libraries/microcms"
+
+const posts = await getPosts()
+---
+
+<CommonTemplate currentPage="home">
+    <ul class="c-main__list">
+        {
+            posts.map((post) => (
+                <li class="c-main__listItem">
+                    <a href={`/${post.category.id}/${post.id}`} class="c-main__listItemWrapper">
+                        <div class={`c-main__listItemCategory --${post.category.id}`}>{post.category.name}</div>
+                        <div class="c-main__listItemImage">
+                            {post.eyecatch && <img srcset={post.eyecatch.url} alt={post.title} />}
+                        </div>
+                        <div class="c-main__listItemTitle">
+                            {post.title}
+                            <span class="c-main__listItemDate">{formatDate(post.createdAt)}</span>
+                        </div>
+                    </a>
+                </li>
+            ))
+        }
+    </ul>
+</CommonTemplate>

@@ -1,0 +1,36 @@
+---
+import * as Cheerio from "cheerio"
+import type { TocItem } from "@/types/type.d.ts"
+
+type Props = {
+    contents: string
+}
+
+const { contents } = Astro.props
+
+const $ = Cheerio.load(contents)
+const toc: TocItem[] = $("h2, h3, h4")
+    .toArray()
+    .map((element) => ({
+        text: $(element).text(),
+        id: $(element).attr("id") ?? "",
+        name: $(element).prop("tagName").toLowerCase() as string,
+    }))
+---
+
+<div class="c-tableOfContents">
+    <p class="c-tableOfContents__title">もくじ</p>
+    <ul class="c-tableOfContents__items">
+        {
+            toc.length
+                ? toc.map((toc) => (
+                      <li class={`c-tableOfContents__item is-${toc.name}`}>
+                          <a href={`#${toc.id}`} class="c-tableOfContents__link">
+                              {toc.text}
+                          </a>
+                      </li>
+                  ))
+                : "もくじはありません…"
+        }
+    </ul>
+</div>

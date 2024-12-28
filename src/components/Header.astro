@@ -1,0 +1,47 @@
+---
+import TableOfContents from "@/components/TableOfContents.astro"
+import { SITE_TITLE } from "@/constants/metadata.ts"
+
+type Props = {
+    currentPage?: string
+    contents?: string
+}
+
+const { currentPage, contents } = Astro.props
+---
+
+<header class="c-header l-header">
+    <button
+        type="button"
+        id="hamburger"
+        class="c-header__hamburger"
+        aria-expand="false"
+        aria-controls="menu"
+        aria-label="メニュー"
+    >
+        <span class="c-header__hamburgerText" aria-hidden="true">メニュー</span>
+    </button>
+
+    <div class="c-header__contents">
+        <div class="c-header__navigation">
+            <div class="c-header__logo">{SITE_TITLE}</div>
+            <a href="/" class={`c-header__link ` + (currentPage === "home" ? "is-current" : "")}> Home </a>
+            <a href="/category/tech" class={`c-header__link ` + (currentPage === "tech" ? "is-current" : "")}> Tech </a>
+            <a href="/category/design" class={`c-header__link ` + (currentPage === "design" ? "is-current" : "")}>
+                Design
+            </a>
+            <a href="/category/daily" class={`c-header__link ` + (currentPage === "daily" ? "is-current" : "")}>
+                Daily
+            </a>
+        </div>
+
+        {currentPage === "blog" && contents && <TableOfContents contents={contents} />}
+    </div>
+</header>
+
+<script>
+    const hamburger = document.querySelector("#hamburger")
+    hamburger?.addEventListener("click", () => {
+        hamburger.classList.toggle("is-active")
+    })
+</script>

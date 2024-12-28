@@ -10,7 +10,11 @@
         "prettier": "prettier --write \"./**/*.{js,jsx,ts,tsx,css,md,json}\""
     },
     "dependencies": {
-        "astro": "^5.1.1"
+        "@fontsource-variable/m-plus-1": "^5.1.0",
+        "@types/cheerio": "^0.22.35",
+        "astro": "^5.1.1",
+        "cheerio": "^1.0.0",
+        "microcms-js-sdk": "^3.1.2"
     },
     "devDependencies": {
         "prettier": "^3.4.2",
