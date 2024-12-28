@@ -1,6 +1,7 @@
 ---
 import TableOfContents from "@/components/TableOfContents.astro"
 import { SITE_TITLE } from "@/constants/metadata.ts"
+import { getCategories } from "@/libraries/microcms"
 
 type Props = {
     currentPage?: string
@@ -8,6 +9,8 @@ type Props = {
 }
 
 const { currentPage, contents } = Astro.props
+
+const categories = await getCategories()
 ---
 
 <header class="c-header l-header">
@@ -26,13 +29,16 @@ const { currentPage, contents } = Astro.props
         <div class="c-header__navigation">
             <div class="c-header__logo">{SITE_TITLE}</div>
             <a href="/" class={`c-header__link ` + (currentPage === "home" ? "is-current" : "")}> Home </a>
-            <a href="/category/tech" class={`c-header__link ` + (currentPage === "tech" ? "is-current" : "")}> Tech </a>
-            <a href="/category/design" class={`c-header__link ` + (currentPage === "design" ? "is-current" : "")}>
-                Design
-            </a>
-            <a href="/category/daily" class={`c-header__link ` + (currentPage === "daily" ? "is-current" : "")}>
-                Daily
-            </a>
+            {
+                categories.map((category) => (
+                    <a
+                        href={`/${category.id}`}
+                        class={`c-header__link ` + (currentPage === category.id ? "is-current" : "")}
+                    >
+                        {category.name}
+                    </a>
+                ))
+            }
         </div>
 
         {currentPage === "blog" && contents && <TableOfContents contents={contents} />}
