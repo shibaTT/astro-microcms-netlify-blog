@@ -41,3 +41,12 @@ textarea:not([rows]) {
 :target {
     scroll-margin-block: 5ex;
 }
+button {
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    outline: none;
+    cursor: pointer;
+
+    appearance: none;
+}
