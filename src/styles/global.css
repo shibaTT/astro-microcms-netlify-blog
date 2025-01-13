@@ -5,6 +5,9 @@ html, body {
 }
 
 body {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     overflow: scroll;
     background-color: var(--bgcolor);
     color: var(--textmain);
@@ -15,6 +18,11 @@ body {
 
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
+}
+
+main {
+    width: 100%;
+    max-width: 740px;
 }
 
 a {
