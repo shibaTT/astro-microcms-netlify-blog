@@ -23,17 +23,25 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props
+
 const twitterIcon = await getImage({ src: twitterIconSrc })
 const pencilIcon = await getImage({ src: pencilIconSrc })
 const refreshIcon = await getImage({ src: refreshIconSrc })
-const formattedContent = load(post.content)
-formattedContent("pre code").each(async (_, element) => {
-    const result = await codeToHtml(formattedContent(element).text(), {
+
+const promise: any = []
+const $ = load(post.content)
+$("pre code").each(function (this: cheerio.Element) {
+    const element = $(this)
+    const code = codeToHtml(element.text(), {
         lang: "javascript",
         theme: "nord",
+    }).then((highlight) => {
+        element.parent().replaceWith(highlight)
     })
-    formattedContent(element).html(result)
+    promise.push(code)
 })
+await Promise.all(promise)
+const formattedContent = $.html()
 ---
 
 <PostTemplate post={post}>
@@ -71,7 +79,7 @@ formattedContent("pre code").each(async (_, element) => {
                 {post.createdAt !== post.updatedAt && <p class="c-post__updatedAt">{formatDate(post.updatedAt)}</p>}
             </div>
         </div>
-        <div class="c-post__contents" set:html={formattedContent.html()} />
+        <div class="c-post__contents" set:html={formattedContent} />
         <div class="c-post__share">
             <p class="c-post__shareText">Share!</p>
             <div class="c-post__sns">
@@ -268,8 +276,34 @@ formattedContent("pre code").each(async (_, element) => {
         border-radius: 12px;
     }
 
-    :global(.c-post__contents pre > code) {
+    :global(.c-post__contents pre) {
         border-radius: 12px;
+        padding: 16px;
+        overflow-x: scroll;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.1);
+
+        &::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+        }
+
+        &::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        /* Firefox用 */
+        scrollbar-width: thin;
+        scrollbar-color: rgba(255, 255, 255, 0.3) rgba(255, 255, 255, 0.1);
     }
 
     .embedly-embed {
