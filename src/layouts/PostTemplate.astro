@@ -13,7 +13,7 @@ const { post } = Astro.props
 ---
 
 <Layout>
-    <Header currentPage={post.category.name}>
+    <Header currentPage={post.category.id}>
         <TableOfContents contents={post.content} slot="toc" />
     </Header>
     <main>
