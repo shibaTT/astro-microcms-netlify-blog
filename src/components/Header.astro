@@ -7,10 +7,9 @@ import { getImage } from "astro:assets"
 
 type Props = {
     currentPage?: string
-    contents?: string
 }
 
-const { currentPage, contents } = Astro.props
+const { currentPage } = Astro.props
 
 const categories = await getCategories()
 
@@ -45,7 +44,7 @@ const hamburgerIcon = await getImage({ src: hamburgerIconSrc })
             }
         </div>
 
-        {currentPage === "blog" && contents && <TableOfContents contents={contents} />}
+        <slot name="toc" />
     </div>
 </header>
 
