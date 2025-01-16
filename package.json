@@ -14,7 +14,8 @@
         "@types/cheerio": "^0.22.35",
         "astro": "^5.1.1",
         "cheerio": "^1.0.0",
-        "microcms-js-sdk": "^3.1.2"
+        "microcms-js-sdk": "^3.1.2",
+        "sharp": "^0.33.5"
     },
     "devDependencies": {
         "prettier": "^3.4.2",
