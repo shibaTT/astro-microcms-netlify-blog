@@ -1,7 +1,7 @@
 ---
 import CommonTemplate from "@/layouts/CommonTemplate.astro"
 import { getPosts, getCategories } from "@/libraries/microcms"
-import { formatDate } from "@/libraries/formatDate"
+import ArticleList from "@/components/ArticleList.astro"
 
 export async function getStaticPaths() {
     const categories = await getCategories()
@@ -21,33 +21,5 @@ const categoryPosts = posts.filter((post) => post.category.id === Astro.params.c
 ---
 
 <CommonTemplate currentPage={Astro.params.category}>
-    {
-        categoryPosts.length > 0 ? (
-            <ul class="c-main__list">
-                {categoryPosts.map((post) => (
-                    <li class="c-main__listItem">
-                        <a href={`/${post.category.id}/${post.id}`} class="c-main__listItemWrapper">
-                            <div class={`c-main__listItemCategory is-${post.category.id}`}>{post.category.name}</div>
-                            <div class="c-main__listItemImage">
-                                {post.eyecatch && <img srcset={post.eyecatch.url} alt={post.title} />}
-                            </div>
-                            <div class="c-main__listItemTitle">
-                                {post.title}
-                                <span class="c-main__listItemDate">{formatDate(post.createdAt)}</span>
-                            </div>
-                        </a>
-                    </li>
-                ))}
-            </ul>
-        ) : (
-            <p class="c-main__empty">このカテゴリーには記事がありません</p>
-        )
-    }
+    <ArticleList posts={categoryPosts} />
 </CommonTemplate>
-
-<style>
-    .c-main__empty {
-        text-align: center;
-        margin-top: 40px;
-    }
-</style>

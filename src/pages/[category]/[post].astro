@@ -84,7 +84,7 @@ const formattedContent = $.html()
             <p class="c-post__shareText">Share!</p>
             <div class="c-post__sns">
                 <a
-                    href={`https://twitter.com/intent/tweet?url=${SITE_URL}/blog/${post.id}&text=${post.title}%20%7C%20To%20The%20First`}
+                    href={`https://twitter.com/intent/tweet?url=${SITE_URL}/${post.category.id}/${post.id}&text=${post.title}%20%7C%20To%20The%20First`}
                     target="_blank"
                     rel="noopener noreferrer"
                     class="c-post__snsItem is-twitter"
