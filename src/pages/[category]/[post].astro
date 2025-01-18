@@ -65,13 +65,12 @@ const formattedContent = $.html()
                 {post.tags && post.tags.map((tag) => <li class="c-post__tag">{tag.tags}</li>)}
             </ul>
             <h1 class="c-post__title">{post.title}</h1>
-            {
-                /* <div class="c-post__category">
-                <Link to={`/category/${post.category.id}`}>
+
+            <div class="c-post__category">
+                <a href={`/category/${post.category.id}`}>
                     {post.category.name}
-                </Link>
-                </div> */
-            }
+                </a>
+            </div>
             <div class="c-post__dates">
                 <p class="c-post__createdAt">
                     {formatDate(post.createdAt)}
