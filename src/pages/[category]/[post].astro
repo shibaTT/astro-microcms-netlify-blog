@@ -64,6 +64,7 @@ const formattedContent = $.html()
                         alt={post.title}
                         width={post.eyecatch.width || 800}
                         height={post.eyecatch.height || 450}
+                        loading="eager"
                     />
                 ) : (
                     <p class="c-post__eyeCatchCategory">{post.category.name}</p>
