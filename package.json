@@ -20,6 +20,7 @@
     "devDependencies": {
         "prettier": "^3.4.2",
         "prettier-plugin-astro": "^0.14.1",
-        "shiki": "^1.26.2"
+        "shiki": "^1.26.2",
+        "shiki-transformer-copy-button": "^0.0.3"
     }
 }
