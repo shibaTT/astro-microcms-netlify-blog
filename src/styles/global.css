@@ -10,8 +10,8 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     overflow: scroll;
-    background-color: var(--bgcolor);
-    color: var(--textmain);
+    background-color: var(--bg-color);
+    color: var(--text-main);
     font-size: 16px;
     line-height: 1.6;
     font-family: "M PLUS 1 Variable", "Helvetica Neue", Arial, "A1ゴシック M", "Hiragino Kaku Gothic ProN",
@@ -28,7 +28,7 @@ main {
 
 a {
     background-color: transparent;
-    color: var(--textmain);
+    color: var(--text-main);
     font-weight: 500;
     text-decoration: none;
     transition: 0.2s;
