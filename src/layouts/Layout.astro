@@ -31,6 +31,9 @@ const formatKeywords = (keywords: string | string[] | undefined): string => {
         <meta name="og:description" content={description} />
         <meta name="keywords" content={formatKeywords(keywords)} />
         <title>{title}</title>
+
+        <link rel="canonical" href={Astro.url.toString()} />
+        <link rel="sitemap" href="/sitemap-index.xml" />
     </head>
     <body>
         <slot />
