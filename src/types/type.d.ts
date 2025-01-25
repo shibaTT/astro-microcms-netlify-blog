@@ -17,6 +17,7 @@ export interface Tags extends MicroCMSContentId, MicroCMSDate {
 export interface Post extends MicroCMSContentId, MicroCMSDate {
     title: string
     content: string
+    old_content?: string // 旧リッチエディタ
     eyecatch?: MicroCMSImage
     category: Category
     Emoji: string
