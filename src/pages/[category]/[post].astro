@@ -7,7 +7,6 @@ import { load } from "cheerio"
 import { codeToHtml } from "shiki"
 import { addCopyButton } from "shiki-transformer-copy-button"
 import { Image } from "astro:assets"
-import { getImage } from "astro:assets"
 
 export async function getStaticPaths() {
     const posts = await getPosts()
