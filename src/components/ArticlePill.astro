@@ -1,6 +1,8 @@
 ---
+import { addWebp } from "@/libraries/addWebp"
 import { formatDate } from "@/libraries/formatDate"
 import type { Post } from "@/types/type"
+import { Image } from "astro:assets"
 
 type Props = {
     post: Post
@@ -13,7 +15,16 @@ const { post } = Astro.props
     <a href={`/${post.category.id}/${post.id}`} class="c-main__listItemWrapper">
         <div class={`c-main__listItemCategory --${post.category.id}`}>{post.category.name}</div>
         <div class="c-main__listItemImage">
-            {post.eyecatch && <img srcset={post.eyecatch.url} alt={post.title} />}
+            {
+                post.eyecatch && (
+                    <Image
+                        src={addWebp(post.eyecatch.url)}
+                        alt={post.title}
+                        width={post.eyecatch.width || 800}
+                        height={post.eyecatch.height || 450}
+                    />
+                )
+            }
         </div>
         <div class="c-main__listItemTitle">
             {post.title}

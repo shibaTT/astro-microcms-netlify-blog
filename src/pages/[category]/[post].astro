@@ -2,6 +2,7 @@
 import PostTemplate from "@/layouts/PostTemplate.astro"
 import { getPosts } from "@/libraries/microcms"
 import { formatDate } from "@/libraries/formatDate"
+import { addWebp } from "@/libraries/addWebp"
 import { SITE_URL } from "@/constants/metadata"
 import { load } from "cheerio"
 import { codeToHtml } from "shiki"
@@ -42,6 +43,14 @@ $("pre").each(function (this: cheerio.Element) {
     promise.push(code)
 })
 await Promise.all(promise)
+
+$("figure img").each(function (this: cheerio.Element) {
+    const element = $(this)
+    const src = new URL(element.attr("src") ?? "")
+    src.searchParams.append("fm", "webp")
+    element.attr("src", src.toString())
+})
+
 const formattedContent = $.html()
 ---
 
@@ -51,7 +60,7 @@ const formattedContent = $.html()
             {
                 post.eyecatch !== undefined ? (
                     <Image
-                        src={post.eyecatch.url}
+                        src={addWebp(post.eyecatch.url)}
                         alt={post.title}
                         width={post.eyecatch.width || 800}
                         height={post.eyecatch.height || 450}
