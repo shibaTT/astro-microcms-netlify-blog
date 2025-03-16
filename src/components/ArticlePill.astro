@@ -28,7 +28,7 @@ const { post } = Astro.props
         </div>
         <div class="c-main__listItemTitle">
             {post.title}
-            <span class="c-main__listItemDate">{formatDate(post.createdAt)}</span>
+            <span class="c-main__listItemDate">{formatDate(post.publishedAt)}</span>
         </div>
     </a>
 </li>
