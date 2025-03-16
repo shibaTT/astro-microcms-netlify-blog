@@ -10,6 +10,7 @@
         "prettier": "prettier --write \"./**/*.{js,jsx,ts,tsx,css,md,json}\""
     },
     "dependencies": {
+        "@astrojs/partytown": "^2.1.4",
         "@astrojs/sitemap": "^3.2.1",
         "@fontsource-variable/m-plus-1": "^5.1.0",
         "@types/cheerio": "^0.22.35",
