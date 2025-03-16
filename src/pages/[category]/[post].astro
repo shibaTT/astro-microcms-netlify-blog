@@ -83,10 +83,10 @@ const formattedContent = $.html()
                 </a>
             </div>
             <div class="c-post__dates">
-                <p class="c-post__createdAt">
-                    {formatDate(post.createdAt)}
+                <p class="c-post__publishedAt">
+                    {formatDate(post.publishedAt)}
                 </p>
-                {post.createdAt !== post.updatedAt && <p class="c-post__updatedAt">{formatDate(post.updatedAt)}</p>}
+                {post.publishedAt !== post.updatedAt && <p class="c-post__updatedAt">{formatDate(post.updatedAt)}</p>}
             </div>
         </div>
         <div class="c-post__contents" set:html={formattedContent} />
@@ -183,12 +183,12 @@ const formattedContent = $.html()
         align-items: flex-end;
     }
 
-    .c-post__createdAt,
+    .c-post__publishedAt,
     .c-post__updatedAt {
         position: relative;
     }
 
-    .c-post__createdAt::before {
+    .c-post__publishedAt::before {
         content: url(/icons/icon-pencil.svg);
         position: absolute;
         top: 60%;
