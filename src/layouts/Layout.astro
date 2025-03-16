@@ -34,6 +34,18 @@ const formatKeywords = (keywords: string | string[] | undefined): string => {
 
         <link rel="canonical" href={Astro.url.toString()} />
         <link rel="sitemap" href="/sitemap-index.xml" />
+
+        <!-- Google tag (gtag.js) -->
+        <script type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-GY0R7XR05P"></script>
+        <script type="text/partytown">
+            window.dataLayer = window.dataLayer || []
+            function gtag() {
+                dataLayer.push(arguments)
+            }
+            gtag("js", new Date())
+
+            gtag("config", "G-GY0R7XR05P")
+        </script>
     </head>
     <body>
         <slot />
