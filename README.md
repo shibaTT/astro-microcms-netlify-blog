@@ -8,9 +8,37 @@ npm create astro@latest -- --template basics
 [![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+# Astro + microCMS + Netlify Blog Starter
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+## 🛠 Tech Stack
+- **Astro** - Modern static site generator
+- **microCMS** - Headless CMS for content management
+- **Netlify** - Deployment & hosting platform
+
+## 🚀 Local Development
+1. Clone repository
+```sh
+git clone https://github.com/shibaTT/astro-microcms-netlify-blog.git
+cd astro-microcms-netlify-blog
+```
+2. Install dependencies
+```sh
+npm install
+```
+3. Create `.env` file from example
+```sh
+cp .env.example .env
+```
+4. Set up your microCMS API keys in `.env`
+5. Start dev server
+```sh
+npm run dev
+```
+
+## ⚠️ Important Notes
+- Environment variables are required for CMS integration
+- Content schema must match microCMS settings
+- Preview mode requires additional Netlify configuration
 
 ## 🚀 Project Structure
 
