@@ -1,9 +1,9 @@
-# Astro + microCMS + Netlify ブログスターターキット
+# Astro x microCMS (w/ Cloudflare Pages)
 
 ## 🛠 技術スタック
 - **Astro** - モダンな静的サイトジェネレーター
 - **microCMS** - コンテンツ管理のためのヘッドレスCMS
-- **Netlify** - デプロイメント＆ホスティングプラットフォーム
+- **Cloudflare Pages** - デプロイメント＆ホスティングプラットフォーム
 
 ## 🚀 ローカル開発環境のセットアップ
 1. リポジトリをクローン
@@ -61,6 +61,3 @@ Astroプロジェクトの構成詳細については、[公式ドキュメン�
 | `npm run astro ...`       | Astro CLIコマンドを実行            |
 | `npm run astro -- --help` | Astro CLIのヘルプを表示            |
 
-## 👀 さらに学ぶ
-
-[Astro公式ドキュメント](https://docs.astro.build)や[Discordコミュニティ](https://astro.build/chat)で情報を入手できます。.
