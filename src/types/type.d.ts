@@ -4,6 +4,7 @@ export interface Metadata {
     title?: string
     description?: string
     keywords?: string | string[]
+    image?: string
 }
 
 export interface Category extends MicroCMSContentId, MicroCMSDate {
@@ -22,6 +23,7 @@ export interface Post extends MicroCMSContentId, MicroCMSDate {
     category: Category
     Emoji: string
     tags: Tags[]
+    metaDescription?: string
 }
 
 export interface TocItem {

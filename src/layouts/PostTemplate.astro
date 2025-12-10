@@ -4,15 +4,27 @@ import Footer from "@/components/Footer.astro"
 import Layout from "@/layouts/Layout.astro"
 import type { Post } from "@/types/type.d.ts"
 import TableOfContents from "@/components/TableOfContents.astro"
+import { load } from "cheerio"
 
 type Props = {
     post: Post
 }
 
 const { post } = Astro.props
+
+let description = ""
+
+if (post.metaDescription) {
+    description = post.metaDescription
+} else {
+    const $ = load(post.old_content ?? post.content)
+    description = $.root().text().slice(0, 100).replace(/\s+/g, " ") + "..."
+}
+
+const image = post.eyecatch?.url
 ---
 
-<Layout>
+<Layout title={post.title} description={description} image={image}>
     <Header currentPage={post.category.id}>
         <TableOfContents contents={post.old_content ?? post.content} slot="toc" />
     </Header>
