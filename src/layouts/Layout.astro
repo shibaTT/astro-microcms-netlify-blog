@@ -7,15 +7,11 @@ import "@fontsource-variable/m-plus-1"
 import { SITE_TITLE, SITE_DESCRIPTION } from "@/constants/metadata.ts"
 
 type Props = Metadata
-const { title = SITE_TITLE, description = SITE_DESCRIPTION, keywords } = Astro.props
+const { title = SITE_TITLE, description = SITE_DESCRIPTION, image } = Astro.props
 
-// Arrayの場合は、カンマ区切りにする
-const formatKeywords = (keywords: string | string[] | undefined): string => {
-    if (Array.isArray(keywords)) {
-        return keywords.join(",")
-    }
-    return keywords ?? ""
-}
+const siteTitle = title === SITE_TITLE ? SITE_TITLE : `${title} | ${SITE_TITLE}`
+const canonialURL = new URL(Astro.url.pathname, Astro.site)
+const socialImageURL = new URL(image ?? "/ogp.png", Astro.site)
 ---
 
 <!doctype html>
@@ -25,14 +21,23 @@ const formatKeywords = (keywords: string | string[] | undefined): string => {
         <meta name="viewport" content="width=device-width" />
         <link rel="icon" type="image/vnd.microsoft.icon" href="/favicon.ico" />
         <meta name="generator" content={Astro.generator} />
-        <meta name="title" content={title} />
-        <meta name="og:title" content={title} />
+        <title>{siteTitle}</title>
+        <meta name="title" content={siteTitle} />
         <meta name="description" content={description} />
-        <meta name="og:description" content={description} />
-        <meta name="keywords" content={formatKeywords(keywords)} />
-        <title>{title}</title>
 
-        <link rel="canonical" href={Astro.url.toString()} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={canonialURL} />
+        <meta property="og:title" content={siteTitle} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={socialImageURL} />
+
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content={canonialURL} />
+        <meta property="twitter:title" content={siteTitle} />
+        <meta property="twitter:description" content={description} />
+        <meta property="twitter:image" content={socialImageURL} />
+
+        <link rel="canonical" href={canonialURL} />
         <link rel="sitemap" href="/sitemap-index.xml" />
 
         <!-- Google tag (gtag.js) -->
