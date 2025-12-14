@@ -48,7 +48,16 @@ $("figure img").each(function (this: cheerio.Element) {
     const element = $(this)
     const src = new URL(element.attr("src") ?? "")
     src.searchParams.append("fm", "webp")
-    element.attr("src", src.toString())
+    const srcString = src.toString()
+    element.attr("src", srcString)
+
+    const width = element.attr("width") ?? ""
+    const height = element.attr("height") ?? ""
+    const alt = element.attr("alt") ?? "alt"
+
+    element.wrap(
+        `<a href="${srcString}" data-img="${srcString}" data-thumb="${srcString}" data-alt="${alt}" data-height="${height}" data-width="${width}"></a>`
+    )
 })
 
 const formattedContent = $.html()
@@ -106,6 +115,37 @@ const formattedContent = $.html()
         </div>
     </article>
 </PostTemplate>
+
+<script>
+    import BiggerPicture from "bigger-picture"
+    import "bigger-picture/css"
+
+    const bp = BiggerPicture({
+        target: document.body,
+    })
+
+    document.addEventListener("DOMContentLoaded", () => {
+        // 画像リンクを取得
+        const imageLinks = document.querySelectorAll("article figure a")
+
+        // 各画像リンクにクリックイベントを設定
+        imageLinks.forEach((link, index) => {
+            link.addEventListener("click", (e) => {
+                e.preventDefault()
+
+                try {
+                    // クリックされた画像のインデックスからモーダルを開く
+                    bp.open({
+                        items: imageLinks,
+                        el: e.currentTarget as EventTarget,
+                    })
+                } catch (error) {
+                    console.error("[BiggerPicture] エラーが発生しました:", error)
+                }
+            })
+        })
+    })
+</script>
 
 <style>
     .c-post {

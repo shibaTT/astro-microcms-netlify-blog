@@ -23,6 +23,9 @@ importers:
       astro:
         specifier: ^5.1.1
         version: 5.1.1(@types/node@22.10.2)(rollup@4.29.1)(typescript@5.7.2)
+      bigger-picture:
+        specifier: ^1.1.19
+        version: 1.1.19
       cheerio:
         specifier: ^1.0.0
         version: 1.0.0
@@ -731,6 +734,9 @@ packages:
 
   base-64@1.0.0:
     resolution: {integrity: sha512-kwDPIFCGx0NZHog36dj+tHiwP4QMzsZ3AgMViUBKI0+V5n4U0ufTCUMhnQ04diaRI8EX/QcPfql7zlhZ7j4zgg==}
+
+  bigger-picture@1.1.19:
+    resolution: {integrity: sha512-LhBPJ3z7YcNsK5lo/4i2KGbMqTMgpl7cI9If5F52VPKLcTUD5+dLr7m0G7np1yVuLlOWr28BK9yb/C8CBlKbOw==}
 
   binary-extensions@2.3.0:
     resolution: {integrity: sha512-Ceh+7ox5qe7LJuLHoY0feh3pHuUDHAcRUeyL2VYghZwfpkNIy/+8Ocg0a3UuSoYzavmylwuLWQOf3hl0jjMMIw==}
@@ -2408,6 +2414,8 @@ snapshots:
   bail@2.0.2: {}
 
   base-64@1.0.0: {}
+
+  bigger-picture@1.1.19: {}
 
   binary-extensions@2.3.0: {}
 
