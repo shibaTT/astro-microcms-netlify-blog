@@ -118,17 +118,33 @@ const formattedContent = $.html()
 
 <script>
     import BiggerPicture from "bigger-picture"
+    import "bigger-picture/css"
 
-    const lib = BiggerPicture({
+    const bp = BiggerPicture({
         target: document.body,
     })
 
-    lib.open({
-        items: document.querySelectorAll("article figure a"),
-    })
+    document.addEventListener("DOMContentLoaded", () => {
+        // 画像リンクを取得
+        const imageLinks = document.querySelectorAll("article figure a")
 
-    console.log(document.querySelectorAll("article figure a"))
-    console.log(lib.open)
+        // 各画像リンクにクリックイベントを設定
+        imageLinks.forEach((link, index) => {
+            link.addEventListener("click", (e) => {
+                e.preventDefault()
+
+                try {
+                    // クリックされた画像のインデックスからモーダルを開く
+                    bp.open({
+                        items: imageLinks,
+                        el: e.currentTarget as EventTarget,
+                    })
+                } catch (error) {
+                    console.error("[BiggerPicture] エラーが発生しました:", error)
+                }
+            })
+        })
+    })
 </script>
 
 <style>
